@@ -6,7 +6,6 @@ A full-stack event booking application built with Node.js, Express, GraphQL, and
 
 ### Backend
 - **Node.js** - Runtime environment
-- **Express.js** - Web framework
 - **GraphQL** - Query language and API
 - **Apollo Server** - GraphQL server implementation
 
