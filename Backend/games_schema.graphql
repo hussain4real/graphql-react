@@ -1,0 +1,5 @@
+APOLLO_KEY=service:Test-app-22jsgv:TwWUOHKF1sd8wZuImPpeuw \
+  rover subgraph publish Test-app-22jsgv@current \
+  --schema ./products-schema.graphql \
+  --name your-subgraph-name \
+  --routing-url http://products.prod.svc.cluster.local:4001/graphql

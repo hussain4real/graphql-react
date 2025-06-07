@@ -48,42 +48,58 @@ let reviews = [
     {
         id: '1',
         rating: 5,
-        content: 'An amazing open-world adventure!'
+        content: 'An amazing open-world adventure!',
+        author_id: '1',
+        game_id: '1'
     },
     {
         id: '2',
         rating: 4,
-        content: 'A fun and creative platformer.'
+        content: 'A fun and creative platformer.',
+        author_id: '2',
+        game_id: '2'
     },
     {
         id: '3',
         rating: 5,
-        content: 'A masterpiece of storytelling and gameplay.'
+        content: 'A masterpiece of storytelling and gameplay.',
+        author_id: '3',
+        game_id: '3'
     },
     {
         id: '4',
         rating: 5,
-        content: 'An epic action-adventure game.'
+        content: 'An epic action-adventure game.',
+        author_id: '1',
+        game_id: '4'
     },
     {
         id: '5',
         rating: 4,
-        content: 'A sandbox game that lets you build anything.'
+        content: 'A sandbox game that lets you build anything.',
+        author_id: '2',
+        game_id: '5'
     },
     {
         id: '6',
         rating: 3,
-        content: 'A good game, but it has some bugs.'
+        content: 'A good game, but it has some bugs.',
+        author_id: '1',
+        game_id: '1'
     },
     {
         id: '7',
         rating: 2,
-        content: 'Not my cup of tea, but others might like it.'
+        content: 'Not my cup of tea, but others might like it.',
+        author_id: '2',
+        game_id: '2'
     },
     {
         id: '8',
         rating: 1,
-        content: 'I did not enjoy this game at all.'
+        content: 'I did not enjoy this game at all.',
+        author_id: '1',
+        game_id: '1'
     }
 ]
 

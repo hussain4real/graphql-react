@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "compile": "tsc",
-    "start": "npm run compile && node --watch ./dist/index.js"
+    "watch:ts": "tsc --watch",
+    "watch:server": "node --watch ./dist/index.js",
+    "start": "npm run compile && node ./dist/index.js"
   },
   "keywords": [],
   "author": "",
