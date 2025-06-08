@@ -116,17 +116,17 @@ const resolvers = {
         },
         // New resolver for addReview
         addReview: (_: any, args: { review: AddReviewInput }) => {
-            console.log('Received addReview mutation with args:', args);
-            console.log('Review data:', args.review);
+            // console.log('Received addReview mutation with args:', args);
+            // console.log('Review data:', args.review);
             
             const newReview = {
                 ...args.review,
                 id: String(db.reviews.length + 1),
             };
-            console.log('Created new review:', newReview);
+            // console.log('Created new review:', newReview);
             
             db.reviews.push(newReview);
-            console.log('Updated reviews array:', db.reviews);
+            // console.log('Updated reviews array:', db.reviews);
             
             return newReview;
         }
