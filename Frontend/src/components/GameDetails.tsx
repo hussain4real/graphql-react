@@ -1,5 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
+import AddReviewForm from './AddReviewForm'; // Import the new form
 
 const GET_GAME_DETAILS = gql`
   query GetGameDetails($id: ID!) {
@@ -49,7 +50,7 @@ interface GameDetailsProps {
 }
 
 const GameDetails: React.FC<GameDetailsProps> = ({ gameId, onBack }) => {
-    const { loading, error, data } = useQuery<GameDetailsData>(GET_GAME_DETAILS, {
+    const { loading, error, data, refetch } = useQuery<GameDetailsData>(GET_GAME_DETAILS, {
         variables: { id: gameId },
     });
 
@@ -58,6 +59,10 @@ const GameDetails: React.FC<GameDetailsProps> = ({ gameId, onBack }) => {
     if (!data || !data.game) return <p className="text-center py-10">No game data found.</p>;
 
     const { game } = data;
+
+    const handleReviewAdded = () => {
+        refetch(); // Refetch game details to show the new review
+    };
 
     return (
         <div className="container mx-auto p-4 md:p-8">
@@ -98,6 +103,8 @@ const GameDetails: React.FC<GameDetailsProps> = ({ gameId, onBack }) => {
                     )}
                 </div>
             </div>
+            {/* Add the review form below the reviews list */}
+            <AddReviewForm gameId={gameId} onReviewAdded={handleReviewAdded} />
         </div>
     );
 };

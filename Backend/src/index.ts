@@ -33,6 +33,14 @@ interface AddGameInput {
     platform: string[];
 }
 
+// New interface for AddReviewInput
+interface AddReviewInput {
+    rating: number;
+    content: string;
+    game_id: string;
+    author_id: string;
+}
+
 // resolvers
 const resolvers = {
     Query: {
@@ -79,7 +87,7 @@ const resolvers = {
             const newGame = {
                 ...args.game,
                 id: String(db.games.length + 1),
-                
+
             };
             db.games.push(newGame);
             return newGame;
@@ -105,6 +113,22 @@ const resolvers = {
             db.reviews = db.reviews.filter(review => review.game_id !== args.id);
             // return the updated list of games
             return db.games;
+        },
+        // New resolver for addReview
+        addReview: (_: any, args: { review: AddReviewInput }) => {
+            console.log('Received addReview mutation with args:', args);
+            console.log('Review data:', args.review);
+            
+            const newReview = {
+                ...args.review,
+                id: String(db.reviews.length + 1),
+            };
+            console.log('Created new review:', newReview);
+            
+            db.reviews.push(newReview);
+            console.log('Updated reviews array:', db.reviews);
+            
+            return newReview;
         }
     }
 }
@@ -119,6 +143,10 @@ const server = new ApolloServer({
 
 const { url } = await startStandaloneServer(server, {
     listen: { port: 4000 },
-
+    context: async ({ req }) => {
+        // Add some debugging
+        console.log('Received request:', req.method, req.url);
+        return {};
+    },
 });
 console.log(`🚀 Server ready at: ${url}`);
