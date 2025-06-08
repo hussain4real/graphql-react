@@ -28,6 +28,11 @@ interface Author {
     reviews?: Review[];
 }
 
+interface AddGameInput {
+    title: string;
+    platform: string[];
+}
+
 // resolvers
 const resolvers = {
     Query: {
@@ -67,6 +72,39 @@ const resolvers = {
         ,
         game: (parent: Review) => {
             return db.games.find(game => game.id === parent.game_id);
+        }
+    },
+    Mutation: {
+        addGame: (_: any, args: { game: AddGameInput }) => {
+            const newGame = {
+                ...args.game,
+                id: String(db.games.length + 1),
+                
+            };
+            db.games.push(newGame);
+            return newGame;
+        },
+        updateGame: (_: any, args: { id: string, edits: Partial<AddGameInput> }) => {
+            db.games = db.games.map(game => {
+                if (game.id === args.id) {
+                    return {
+                        ...game,
+                        ...args.edits
+                    };
+                }
+                return game;
+            }
+            );
+            // return the updated game
+            return db.games.find(game => game.id === args.id);
+        },
+        deleteGame: (_: any, args: { id: string }) => {
+            // use filter to remove the game with the specified id
+            db.games = db.games.filter(game => game.id !== args.id);
+            // also remove all reviews associated with the deleted game
+            db.reviews = db.reviews.filter(review => review.game_id !== args.id);
+            // return the updated list of games
+            return db.games;
         }
     }
 }
